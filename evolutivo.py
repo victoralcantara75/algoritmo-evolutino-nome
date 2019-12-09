@@ -2,11 +2,16 @@
 import random
 import time
 
-def gerarInicial(individuo,tamanho_nome):
+def gerarInicial(tamanho_nome, num_individuos=6):
 
-	for i in range (0,tamanho_nome):
-		num = random.randrange(2)
-		individuo.append(num)
+	individuos = list([] for i in range(num_individuos))
+
+	for j in range (0, num_individuos):
+		for i in range (0,tamanho_nome):
+			num = random.randrange(2)
+			individuos[j].append(num)
+
+	return individuos
 
 def avaliacao(individuos, letra,tamanho_nome):
 
@@ -125,35 +130,13 @@ if __name__ == '__main__':
 
 	printarNome(nome)
 	
-
-	taxa_mutacao = 0.1
-	
-	individuos = []
+	taxa_mutacao = 0.4
 	aptidoes = []
 	melhores = []
 
-	i1 = []
-	i2 = []
-	i3 = []
-	i4 = []
-	i5 = []
-	i6 = []
-
 	tamanho_nome = len(nome)
 
-	gerarInicial(i1,tamanho_nome)
-	gerarInicial(i2,tamanho_nome)
-	gerarInicial(i3,tamanho_nome)
-	gerarInicial(i4,tamanho_nome)
-	gerarInicial(i5,tamanho_nome)
-	gerarInicial(i6,tamanho_nome)
-
-	individuos.append(i1)
-	individuos.append(i2)
-	individuos.append(i3)
-	individuos.append(i4)
-	individuos.append(i5)
-	individuos.append(i6)
+	individuos = gerarInicial(tamanho_nome, 6)
 
 	while True:
 		aptidoes, maximo, idx = avaliacao(individuos, nome, tamanho_nome)
